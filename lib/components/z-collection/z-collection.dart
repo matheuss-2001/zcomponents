@@ -113,7 +113,9 @@ class ZCollectionState extends State<ZCollection> {
   }
 
   Color _retornaCorIcon() {
-    if (_itemSelecionado?.valor == null && _anterior == "Selecione") {
+    if (widget.bloquearCampo) {
+      return Colors.grey;
+    } else if (_itemSelecionado?.valor == null && _anterior == "Selecione") {
       return widget.themeData.primaryColor;
     } else {
       return Colors.black;
@@ -126,10 +128,14 @@ class ZCollectionState extends State<ZCollection> {
     } else {
       return new IconButton(
           onPressed: () {
-            setState(() {
-              _itemSelecionado = null;
-              if (widget.onClear != null) widget.onClear();
-            });
+            if (widget.bloquearCampo) {
+              return null;
+            } else {
+              setState(() {
+                _itemSelecionado = null;
+                if (widget.onClear != null) widget.onClear();
+              });
+            }
           },
           icon: new Icon(Icons.clear, color: _retornaCorIcon()));
     }

@@ -131,12 +131,7 @@ class ZSelectionListState extends State<ZSelectionList> {
               widget.onAdd();
             },
             leading: new Text(widget.textoOnAdd),
-            trailing: new IconButton(
-                icon: Icon(
-                  Icons.add,
-                  color: widget.theme.primaryColor,
-                ),
-                onPressed: () {}),
+            trailing: new Icon(Icons.add, color: widget.theme.primaryColor)
           ),
           new Divider(
             height: 1,
